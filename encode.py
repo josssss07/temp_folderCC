@@ -1,3 +1,24 @@
+"""encode.py — temporary-file covert channel encoder.
+
+THIS SCRIPT IS A DEMO
+
+This script encodes a user-provided message into artifacts on disk under
+`/tmp/secret_store`. The message is split into words; each word is placed in a
+randomly named folder. Each character is converted to 8-bit ASCII, then each
+bit is represented by the size (parity) of a file:
+
+- bit 0 → even-sized file (2 bytes)
+- bit 1 → odd-sized file (1 byte)
+
+File names are zero-padded numbers (e.g., 0000, 0001, ...) so the decoder can
+reconstruct bit order deterministically.
+
+Usage:
+    python encode.py
+
+Author- Joshua Desai     
+"""
+
 import os
 import shutil
 import json

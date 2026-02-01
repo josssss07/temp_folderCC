@@ -1,3 +1,24 @@
+"""decode.py — temporary-file covert channel decoder.
+
+THIS SCRIPT IS A DEMO
+
+This script reverses the encoding produced by `encode.py`.
+
+It reads `/tmp/secret_store/.mapping.json` to recover the word-folder order,
+then for each word folder it sorts the numeric filenames (0000, 0001, ...) and
+reconstructs a bitstream from file size parity:
+
+- even-sized file → bit 0
+- odd-sized file  → bit 1
+
+Bits are grouped into 8-bit ASCII bytes and converted back to characters.
+
+Usage:
+    python decode.py
+
+Author- Joshua Desai     
+"""
+
 import os
 import json
 from pathlib import Path
